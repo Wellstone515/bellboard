@@ -32,7 +32,11 @@
           <% end %>
           <li class="header__top__list-first__child__item">試合予定</li>
           <li class="header__top__list-first__child__item">投稿画像一覧</li>
+          <%= link_to(destroy_user_session_path, method: :delete) do %>
+          <% if user_signed_in? %>
           <li class="header__top__list-first__child__item">ログアウト</li>
+          <% end %>
+          <% end %>
         </ul>
       </li>
 
