@@ -4,14 +4,17 @@
   <title>bellboard</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/css/uikit.min.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.6/js/uikit-icons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +27,7 @@
 
       <li class="header__top__list-first"><span uk-icon="icon: menu; ratio: 1.5"></span>
         <ul class="header__top__list__child">
-          <%= link_to(new_post_path) do %>
+          <%= link_to(user_path(current_user)) do %>
           <li class="header__top__list-first__child__item">マイページ</li>
           <% end %>
           <%= link_to(posts_path) do %>
@@ -40,11 +43,17 @@
         </ul>
       </li>
 
+      <% if user_signed_in? %>
       <li class="header__top__list-second uk-float-right"><span class="header__top__list-second__icon uk-badge">0</span>
         <span uk-drop="boundary: .header__top__list;delay-show: 500; delay-hide: 200">
-          <div class="uk-card-small uk-card-default uk-card-body">未読通知０件</div>
+          <div class="uk-card-small uk-card-default uk-card-body">未読コメント0件</div>
         </span>
       </li>
+      <% else %>
+      <%= link_to(new_user_session_path) do %>
+      <li class="header__top__list">ログイン</li>
+      <% end %>
+      <% end %>
 
       <%= link_to(new_post_path) do %>
       <li class="header__top__list">投稿する</li>

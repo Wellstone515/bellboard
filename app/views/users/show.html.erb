@@ -1,7 +1,8 @@
-<div class="post-index-main">
-  <div class="post-index-main__transparent">
+<div class="post-index-main-back">
 
   <div class="post-index-grid">
+
+    <div class="post-index-main-back__title"><%= @user.name %>さんの投稿</div>
 
     <% @posts.each do |post| %>
     <div class="post-index-main__body uk-card-small uk-card-default">
@@ -9,10 +10,8 @@
         <%= simple_format(post.body, class: "post-index-main__body__comment") %>
       </div>
       <div class="post-index-main__body__footer uk-card-footer">
-        <%= link_to(user_path(post.user), style: "text-decoration: none;") do %>
         <span class="post-index-main__body__footer__name"><%= post.user.name %></span>
         <span class="post-index-main__body__footer__date"><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
-        <% end %>
         <%= link_to(post_path(post), style: "text-decoration: none;") do %>
         <span class="post-index-main__body__footer__icon" uk-icon="icon: comment"></span>
         <% end %>
@@ -33,11 +32,11 @@
         <p class="side__body__comment__next">NEXT MATCH</p>
         <p class="side__body__comment__team">vs ヴィッセル神戸</p>
         <p class="side__body__comment__date">7月14日（日） 19:00〜</p>
+        <p class="side__body__comment__place">@ BMWスタジアム</p>
       </div>
     </div>
 
   </div>
 
-  </div>
 </div>
 

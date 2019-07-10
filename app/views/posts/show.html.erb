@@ -1,0 +1,30 @@
+<div class="post-show">
+
+<p>投稿詳細ページ</p>
+
+<p><%= simple_format(@post.body) %></p>
+<p><%= @post.user.name %></p>
+<p><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+
+<%= link_to "投稿一覧へ", posts_path %>
+
+
+<br><br><br><br>
+
+<p>コメント一覧</p><br>
+
+<% @comments.each do |f| %>
+<div>
+<%= f.body %>
+<%= f.user.name %>
+</div>
+<% end %>
+
+<%= form_for [@post, @comment] do |f| %>
+<%= f.text_field :body %>
+<%= f.submit "コメントする" %>
+<% end %>
+
+
+
+</div>
