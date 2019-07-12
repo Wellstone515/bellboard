@@ -14,19 +14,21 @@
   background-image: url("181027_264.jpg");
   background-size: cover;
   background-attachment: fixed;
-  overflow: scroll;
   box-sizing: border-box;
-  overflow: auto;
   &__transparent {
     background-color: rgba(0,0,0,0.5);
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 60px);
     box-sizing: border-box;
     overflow: auto;
   }
   &__body {
     margin: 10px 0 0 80px;
     border-radius: 6px;
+    & img {
+      border-radius: 5%;
+      margin: 10px;
+    }
     &__comment {
       font-weight: bold;
     }
@@ -47,6 +49,11 @@
       &__icon-heart {
         margin-left: 10px;
         cursor: pointer;
+      }
+      &__icon-favorited {
+        margin-left: 10px;
+        cursor: pointer;
+        color: red;
       }
       &__icon-count {
         margin-right: 10px;
@@ -109,4 +116,3 @@
     }
   }
 }
-
