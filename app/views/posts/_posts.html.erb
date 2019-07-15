@@ -1,0 +1,20 @@
+<span id="favorite-link-<%= post.id %>">
+
+  <% if user_signed_in? %>
+    <% if current_user.already_favorited?(post) %>
+      <%= link_to(post_favorite_path(post, @favorite), post: "#{post.id}", class: "heart-icon", method: :delete, style: "text-decoration: none;", remote: true) do %>
+        <span class="post-index-main__body__footer__icon-favorited" uk-icon="icon: heart"></span>
+      <% end %>
+    <% else %>
+      <%= link_to(post_favorites_path(post), class: "heart-icon", method: :post, style: "text-decoration: none;", remote: true) do %>
+        <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= link_to(new_user_session_path, style: "text-decoration: none;") do %>
+      <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
+    <% end %>
+  <% end %>
+  <span class="post-index-main__body__footer__icon-count"><%= post.favorites.count %></span>
+
+</span>
