@@ -28,6 +28,27 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @post = Post.find(params[:id])
+    0.times { @post.images.build }
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params) if @post.user_id == current_user.id
+    if @post.save
+      redirect_to controller: :posts, action: :show
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy if post.user_id == current_user.id
+    redirect_to controller: :posts, action: :index, alert: '削除しますか？'
+  end
+
   private
   def post_params
     params.require(:post).permit(:body, images_attributes: [:image_id]).merge(user_id: current_user.id)
