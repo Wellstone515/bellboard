@@ -27,16 +27,20 @@
 
       <li class="header__top__list-first"><span uk-icon="icon: menu; ratio: 1.5"></span>
         <ul class="header__top__list__child">
+          <% if user_signed_in? %>
           <%= link_to(user_path(current_user)) do %>
           <li class="header__top__list-first__child__item">マイページ</li>
+          <% end %>
           <% end %>
           <%= link_to(posts_path) do %>
           <li class="header__top__list-first__child__item">試合結果</li>
           <% end %>
           <li class="header__top__list-first__child__item">試合予定</li>
+          <%= link_to(images_path) do %>
           <li class="header__top__list-first__child__item">投稿画像一覧</li>
-          <%= link_to(destroy_user_session_path, method: :delete) do %>
+          <% end %>
           <% if user_signed_in? %>
+          <%= link_to(destroy_user_session_path, method: :delete) do %>
           <li class="header__top__list-first__child__item">ログアウト</li>
           <% end %>
           <% end %>
