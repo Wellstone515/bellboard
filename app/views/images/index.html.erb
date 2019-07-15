@@ -1,0 +1,13 @@
+<div class="image-index">
+  <div class="image-index__content">
+
+    <div class="image-index__content__card" uk-lightbox="animation: fade">
+      <% @images.each do |image| %>
+        <%= link_to("#{image.image_id.url}", class: "image-index__content__card__detail") do %>
+          <%= image_tag "#{image.image_id.url}", width: "300" %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

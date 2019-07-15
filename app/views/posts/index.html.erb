@@ -8,6 +8,13 @@
       <div class="uk-card-body">
         <%= simple_format(post.body, class: "post-index-main__body__comment") %>
       </div>
+      <% post.images.each do |image| %>
+      <span uk-lightbox>
+        <%= link_to("#{image.image_id.url}") do %>
+          <%= image_tag "#{image.image_id.url}", width: "150" %>
+        <% end %>
+      </span>
+      <% end %>
       <div class="post-index-main__body__footer uk-card-footer">
         <%= link_to(user_path(post.user), style: "text-decoration: none;") do %>
         <span class="post-index-main__body__footer__name"><%= post.user.name %></span>
@@ -17,8 +24,10 @@
         <span class="post-index-main__body__footer__icon" uk-icon="icon: comment"></span>
         <% end %>
         <span class="post-index-main__body__footer__icon-count"><%= post.comments.count %></span>
-        <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
-        <span class="post-index-main__body__footer__icon-count">0</span>
+
+        <!-- いいね機能 -->
+          <%= render partial: "posts/posts", locals: {post: post} %>
+
         <%= link_to "コメントする", post_path(post), class: "post-index-main__body__footer__icon", style: "text-decoration: none;" %>
       </div>
     </div>
@@ -31,13 +40,15 @@
     <div class="side__body uk-card-small uk-card-default">
       <div class="uk-card-body">
         <p class="side__body__comment__next">NEXT MATCH</p>
-        <p class="side__body__comment__team">vs ヴィッセル神戸</p>
-        <p class="side__body__comment__date">7月14日（日） 19:00〜</p>
+        <p class="side__body__comment__team">vs コンサドーレ札幌</p>
+        <p class="side__body__comment__date">7月20日（土） 13:00〜</p>
+        <p class="side__body__comment__place">@ 札幌厚別</p>
       </div>
     </div>
 
   </div>
 
   </div>
+
 </div>
 

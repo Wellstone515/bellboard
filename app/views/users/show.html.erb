@@ -2,23 +2,40 @@
 
   <div class="post-index-grid">
 
-    <div class="post-index-main-back__title"><%= @user.name %>さんの投稿</div>
+    <% if @user == current_user %>
+      <div class="post-index-main-back__title">あなたの投稿</div>
+    <% else %>
+      <div class="post-index-main-back__title"><%= @user.name %>さんの投稿</div>
+    <% end %>
 
     <% @posts.each do |post| %>
     <div class="post-index-main__body uk-card-small uk-card-default">
       <div class="uk-card-body">
         <%= simple_format(post.body, class: "post-index-main__body__comment") %>
       </div>
+      <% post.images.each do |image| %>
+      <span uk-lightbox>
+        <%= link_to("#{image.image_id.url}") do %>
+          <%= image_tag "#{image.image_id.url}", width: "150" %>
+        <% end %>
+      </span>
+      <% end %>
       <div class="post-index-main__body__footer uk-card-footer">
         <span class="post-index-main__body__footer__name"><%= post.user.name %></span>
         <span class="post-index-main__body__footer__date"><%= post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
         <%= link_to(post_path(post), style: "text-decoration: none;") do %>
-        <span class="post-index-main__body__footer__icon" uk-icon="icon: comment"></span>
+          <span class="post-index-main__body__footer__icon" uk-icon="icon: comment"></span>
         <% end %>
         <span class="post-index-main__body__footer__icon-count"><%= post.comments.count %></span>
-        <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
-        <span class="post-index-main__body__footer__icon-count">0</span>
-        <%= link_to "コメントする", post_path(post), class: "post-index-main__body__footer__icon", style: "text-decoration: none;" %>
+
+        <%= render partial: "posts/posts", locals: {post: post} %>
+<!--         <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
+        <span class="post-index-main__body__footer__icon-count">0</span> -->
+        <%= link_to "コメントする", post_path(post), class: "post-index-main__body__footer__comment", style: "text-decoration: none;" %>
+        <%= link_to(edit_post_path(post), style: "text-decoration: none;") do %>
+          <i class="fas fa-wrench fa-lg post-index-main__body__footer__edit"></i>
+        <% end %>
+        <i class="far fa-trash-alt fa-lg post-index-main__body__footer__edit"></i>
       </div>
     </div>
     <% end %>

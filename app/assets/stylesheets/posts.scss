@@ -14,19 +14,21 @@
   background-image: url("181027_264.jpg");
   background-size: cover;
   background-attachment: fixed;
-  overflow: scroll;
   box-sizing: border-box;
-  overflow: auto;
   &__transparent {
     background-color: rgba(0,0,0,0.5);
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 60px);
     box-sizing: border-box;
     overflow: auto;
   }
   &__body {
     margin: 10px 0 0 80px;
     border-radius: 6px;
+    & img {
+      border-radius: 5%;
+      margin: 10px;
+    }
     &__comment {
       font-weight: bold;
     }
@@ -48,8 +50,19 @@
         margin-left: 10px;
         cursor: pointer;
       }
+      &__icon-favorited {
+        margin-left: 10px;
+        cursor: pointer;
+        color: red;
+      }
       &__icon-count {
         margin-right: 10px;
+      }
+      &__comment {
+        margin: 0 20px 0 10px;
+      }
+      &__edit {
+        margin: 0 10px;
       }
     }
   }
@@ -65,12 +78,53 @@
   width: 100%;
   height: 100vh;
   background-color: #fafafa;
+  &__title {
+    margin: 40px 0 20px 0;
+    &__icon {
+      font-style: italic;
+    }
+    &__text {
+      font-size: 30px;
+      font-weight: bold;
+      font-style: italic;
+      margin-left: 5px;
+    }
+  }
+  &__textarea::placeholder {
+    font-size: 20px;
+  }
+  &__file-field {
+    margin: 10px 0;
+    &__outputImage {
+      height: 166px;
+      width: 250px;
+      border: solid 1px #dddddd;
+      margin-bottom: 10px;
+    }
+    &__icon {
+      padding: 60px  0 0 100px;
+    }
+  }
+  &__button {
+    margin-top: 10px;
+  }
 }
+
 
 
   /*post-show メイン画面*/
 
 .post-show {
+  padding-top: 60px;
+  width: 100%;
+  height: 100vh;
+  background-color: #fafafa;
+}
+
+
+  /*post-edit メイン画面*/
+
+.post-edit {
   padding-top: 60px;
   width: 100%;
   height: 100vh;
@@ -109,4 +163,3 @@
     }
   }
 }
-
