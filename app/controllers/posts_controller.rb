@@ -3,6 +3,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.order("id desc")
+    if user_signed_in?
+      @favorite = Favorite.find_by(user_id: current_user.id)
+    end
   end
 
   def show
@@ -13,6 +16,7 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    1.times { @post.images.build }
   end
 
   def create
@@ -26,7 +30,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:body).merge(user_id: current_user.id)
+    params.require(:post).permit(:body, images_attributes: [:image_id]).merge(user_id: current_user.id)
   end
 
 end
