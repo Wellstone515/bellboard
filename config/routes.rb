@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts do
     resources :comments
+    resources :favorites, only: [:create, :destroy]
   end
+  resources :images, only: [:index]
 end
