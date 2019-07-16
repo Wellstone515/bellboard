@@ -10,7 +10,8 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+    @user = @post.user
+    @comments = @post.comments.order("id desc")
     @comment = Comment.new
   end
 
