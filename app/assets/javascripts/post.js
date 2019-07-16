@@ -22,4 +22,19 @@ $(document).on('turbolinks:load', function(){
     fileReader.readAsDataURL(file);
   });
 
+  $("#comment_body").keyup(function(){
+    var inputbox = $(this).val();
+    if(inputbox == ""){
+      $(".post-show-main__comment-box").css("display", "none");
+    } else {
+    $(".post-show-main__comment-box").slideDown();
+    }
+  });
+  // $("#comment_body").blur(function(){
+  //   $(".post-show-main__comment-box").css("display", "none");
+  // });
+  $("#comment_body").submit(function(){
+    $(".post-show-main__comment-box").css("display", "none");
+  });
+
 });
