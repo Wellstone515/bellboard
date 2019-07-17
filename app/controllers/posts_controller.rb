@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @posts = Post.order("id desc")
+    @posts = Post.order("id desc").page(params[:page]).per(20)
     if user_signed_in?
       @favorite = Favorite.find_by(user_id: current_user.id)
     end
@@ -13,6 +13,9 @@ class PostsController < ApplicationController
     @user = @post.user
     @comments = @post.comments.order("id desc")
     @comment = Comment.new
+    if user_signed_in?
+      @favorite = Favorite.find_by(user_id: current_user.id)
+    end
   end
 
   def new
