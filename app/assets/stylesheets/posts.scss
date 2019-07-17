@@ -21,9 +21,10 @@
     height: calc(100vh - 60px);
     box-sizing: border-box;
     overflow: auto;
+    padding-left: 80px;
   }
   &__body {
-    margin: 10px 0 0 80px;
+    margin-top: 10px;
     border-radius: 6px;
     & img {
       border-radius: 5%;
@@ -96,7 +97,7 @@
   &__file-field {
     margin: 10px 0;
     &__outputImage {
-      height: 166px;
+      /*height: 166px;*/
       width: 250px;
       border: solid 1px #dddddd;
       margin-bottom: 10px;
@@ -106,7 +107,7 @@
       }
     }
     &__icon {
-      padding: 60px  0 0 100px;
+      padding: 60px  0 60px 100px;
     }
   }
   &__button {
