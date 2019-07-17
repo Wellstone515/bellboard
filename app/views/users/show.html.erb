@@ -32,10 +32,15 @@
 <!--         <span class="post-index-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
         <span class="post-index-main__body__footer__icon-count">0</span> -->
         <%= link_to "コメントする", post_path(post), class: "post-index-main__body__footer__comment", style: "text-decoration: none;" %>
-        <%= link_to(edit_post_path(post), style: "text-decoration: none;") do %>
-          <i class="fas fa-wrench fa-lg post-index-main__body__footer__edit"></i>
+
+        <% if post.user.id == current_user.id %>
+
+        <%= link_to "",edit_post_path(post), class: "fas fa-wrench fa-lg post-index-main__body__footer__edit", style: "text-decoration: none;" %>
+
+        <%= link_to "", post_path(post.id), method: :delete, class: "far fa-trash-alt fa-lg post-index-main__body__footer__edit", data: { confirm: '削除しますか？' } %>
+
+        <% else %>
         <% end %>
-        <i class="far fa-trash-alt fa-lg post-index-main__body__footer__edit"></i>
       </div>
     </div>
     <% end %>

@@ -1,30 +1,95 @@
-<div class="post-show">
+<div class="post-show-main">
 
-<p>投稿詳細ページ</p>
+  <div class="post-show-grid">
 
-<p><%= simple_format(@post.body) %></p>
-<p><%= @post.user.name %></p>
-<p><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></p>
+    <% if @user == current_user %>
+      <div class="post-show-main__title">あなたの投稿</div>
+    <% else %>
+      <div class="post-show-main__title"><%= @user.name %>さんの投稿</div>
+    <% end %>
 
-<%= link_to "投稿一覧へ", posts_path %>
+    <div class="post-show-main__body uk-card-small uk-card-default">
+      <div class="uk-card-body">
+        <%= simple_format((@post.body), class: "post-show-main__body__comment") %>
+      </div>
+      <% @post.images.each do |image| %>
+      <span uk-lightbox>
+        <%= link_to("#{image.image_id.url}") do %>
+          <%= image_tag "#{image.image_id.url}", width: "150" %>
+        <% end %>
+      </span>
+      <% end %>
+      <div class="post-show-main__body__footer uk-card-footer">
+        <span class="post-show-main__body__footer__name"><%= @post.user.name %></span>
+        <span class="post-show-main__body__footer__date"><%= @post.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+        <%= link_to(post_path(@post), style: "text-decoration: none;") do %>
+          <span class="post-show-main__body__footer__icon" uk-icon="icon: comment"></span>
+        <% end %>
+        <span class="post-show-main__body__footer__icon-count"><%= @post.comments.count %></span>
+
+        <%= render partial: "posts/posts", locals: {post: @post} %>
+<!--         <span class="post-show-main__body__footer__icon-heart" uk-icon="icon: heart"></span>
+        <span class="post-show-main__body__footer__icon-count">0</span> -->
+        <%= link_to "コメントする", post_path(@post), class: "post-show-main__body__footer__comment", style: "text-decoration: none;" %>
+
+        <% if @post.user.id == current_user.id %>
+
+        <%= link_to "",edit_post_path(@post), class: "fas fa-wrench fa-lg post-show-main__body__footer__edit", style: "text-decoration: none;" %>
+
+        <%= link_to "", post_path(@post.id), method: :delete, class: "far fa-trash-alt fa-lg post-show-main__body__footer__edit", data: { confirm: '削除しますか？' } %>
+
+        <% else %>
+        <% end %>
+      </div>
+    </div>
 
 
-<br><br><br><br>
+<!--     <div class="post-show-main__title">コメント一覧</div>
 
-<p>コメント一覧</p><br>
+    <%= form_for [@post, @comment] do |f| %>
+    <%= f.text_area :body, placeholder: "コメント入力欄", autocomplete: "off", class: "grey lighten-5 new_text_field materialize-textarea post-show-main__textarea" %>
+      <button class="post-show-main__comment-box waves-effect waves-light btn-small" type="submit" name="action">
+        <%= f.submit "コメントする" %>
+        <i class="material-icons right">comment</i>
+      </button>
+    <% end %> -->
 
-<% @comments.each do |f| %>
-<div>
-<%= f.body %>
-<%= f.user.name %>
+
+    <div class="post-show-main__title">コメント一覧</div>
+
+    <%= form_for [@post, @comment] do |f| %>
+    <%= f.text_area :body, placeholder: "コメント入力欄", autocomplete: "off", class: "grey lighten-5 new_text_field materialize-textarea post-show-main__textarea" %>
+      <button class="post-show-main__comment-box waves-effect waves-light btn-small" type="submit" name="action">
+        <%= f.submit "コメントする" %>
+        <i class="material-icons right">comment</i>
+      </button>
+    <% end %>
+
+    <% @comments.each do |f| %>
+    <div class="post-show-main__comment uk-card-small uk-card-default">
+      <div class="uk-card-body">
+        <span class="post-show-main__body__name-date"><%= f.user.name %></span>
+        <span class="post-show-main__body__name-date"><%= f.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+        <%= simple_format((f.body), class: "post-show-main__body__comment") %>
+      </div>
+    </div>
+    <% end %>
+
+  </div>
+
+  <div class="side-grid">
+
+    <div class="side__body uk-card-small uk-card-default">
+      <div class="uk-card-body">
+        <p class="side__body__comment__next">NEXT MATCH</p>
+        <p class="side__body__comment__team">vs ヴィッセル神戸</p>
+        <p class="side__body__comment__date">7月14日（日） 19:00〜</p>
+        <p class="side__body__comment__place">@ BMWスタジアム</p>
+      </div>
+    </div>
+
+  </div>
+
 </div>
-<% end %>
-
-<%= form_for [@post, @comment] do |f| %>
-<%= f.text_field :body %>
-<%= f.submit "コメントする" %>
-<% end %>
 
 
-
-</div>

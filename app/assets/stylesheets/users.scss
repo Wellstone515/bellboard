@@ -5,13 +5,13 @@
 .post-index-main-back {
   width: 100%;
   padding-top: 60px;
+  padding-left: 80px;
   height: 100vh;
   background-color: #eeeeee;
   overflow: scroll;
   box-sizing: border-box;
   overflow: auto;
   &__title {
-    margin-left: 80px;
     font-weight: bold;
     font-style: italic;
     font-size: 25px;

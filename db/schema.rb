@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_10_025239) do
+ActiveRecord::Schema.define(version: 2019_07_17_045603) do
 
   create_table "comments", force: :cascade do |t|
     t.text "body", null: false
@@ -47,6 +47,15 @@ ActiveRecord::Schema.define(version: 2019_07_10_025239) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "sns_credentials", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -56,6 +65,10 @@ ActiveRecord::Schema.define(version: 2019_07_10_025239) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name", null: false
+    t.string "uid"
+    t.string "provider"
+    t.string "username"
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

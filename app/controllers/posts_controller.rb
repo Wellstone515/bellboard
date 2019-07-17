@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @posts = Post.order("id desc")
+    @posts = Post.order("id desc").page(params[:page]).per(20)
     if user_signed_in?
       @favorite = Favorite.find_by(user_id: current_user.id)
     end
@@ -10,8 +10,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comments = @post.comments
+    @user = @post.user
+    @comments = @post.comments.order("id desc")
     @comment = Comment.new
+    if user_signed_in?
+      @favorite = Favorite.find_by(user_id: current_user.id)
+    end
   end
 
   def new
@@ -26,6 +30,27 @@ class PostsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+    0.times { @post.images.build }
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update(post_params) if @post.user_id == current_user.id
+    if @post.save
+      redirect_to controller: :posts, action: :show
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy if post.user_id == current_user.id
+    redirect_to controller: :posts, action: :index, alert: '削除しますか？'
   end
 
   private

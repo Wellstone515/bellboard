@@ -1,3 +1,50 @@
-<div class="post-edit">
-  edit
+<!-- <div class="post-new">
+  <div class="row">
+    <div class="col l2"></div>
+    <div class="col l8">
+      <div class="post-new__title">
+        <i class="fas fa-wrench fa-2x post-new__title__icon"></i>
+        <span class="post-new__title__text">投稿編集</span>
+      </div>
+      <%= @post.body %>
+
+    </div>
+    <div class="col l2"></div>
+  </div>
+</div> -->
+
+
+<div class="post-new">
+  <div class="row">
+    <div class="col l2"></div>
+    <div class="col l8">
+      <div class="post-new__title">
+        <i class="fas fa-wrench fa-2x post-new__title__icon"></i>
+        <span class="post-new__title__text">投稿編集</span>
+      </div>
+      <%= form_for @post do |f| %>
+      <%= f.text_area :body, placeholder: "text", autofocus: true, :size => "20x10", id: "textarea1", class: "grey lighten-5 new_text_field materialize-textarea post-new__textarea" %>
+      <%= f.fields_for :images do |image| %>
+      <div class="post-new__file-field">
+        <div class="post-new__file-field__outputImage">
+          <%= image_tag image.object.image_id.url %>
+
+
+
+
+
+        </div>
+        <label class="uk-button uk-button-default">ファイルを選択
+        <%= image.file_field :image_id, style: "display:none", class: "inputFile" %>
+        </label>
+      </div>
+      <% end %>
+      <button class="btn waves-effect waves-light btn-large post-new__button" type="submit" name="action">
+        <%= f.submit "投稿する" %>
+        <i class="material-icons right">send</i>
+      </button>
+      <% end %>
+    </div>
+    <div class="col l2"></div>
+  </div>
 </div>

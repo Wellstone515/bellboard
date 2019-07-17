@@ -1,3 +1,11 @@
 .sign-up {
-  padding-top: 60px;
+  &__password-font {
+    color: white;
+  }
+  &__button {
+    margin: 5px 0;
+    &__capitalize {
+      text-transform: capitalize;
+    }
+  }
 }
