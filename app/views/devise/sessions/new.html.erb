@@ -1,30 +1,62 @@
 <div class="sign-in">
+  <div class="sign-in__transparent">
 
-<h2>Log in</h2>
+  <div class="row">
+    <div class="col s4 m4 l4"></div>
+    <div class="col s4 m4 l4 sign-in__box">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <h2 class="sign-in__title">Log in</h2>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="">
+        <%= f.label :email, class: "grey-text text-lighten-4" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "grey lighten-4" %>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="sign-in__password">
+        <%= f.label :password, class: "grey-text text-lighten-4" %><br />
+        <%= f.password_field :password, autocomplete: "off", class: "grey lighten-4" %>
+      </div>
+
+<!--       <% if devise_mapping.rememberable? %>
+      <div class="field sign_in_up_text">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me, class: "log_in_text" %>
+      </div>
+      <% end %> -->
+
+      <div class="">
+        <button class="col l12 btn waves-effect waves-light sign-in__button" type="submit" name="action">
+          ログイン
+          <%= f.submit "" %>
+          <i class="material-icons right">forward</i>
+        </button>
+      </div>
+      <% end %>
+
+
+
+
+
+      <%= link_to new_registration_path(resource_name) do %>
+        <div class="col l12 btn waves-effect waves-light sign-in__button">
+          アカウント登録する
+          <i class="material-icons right">forward</i>
+        </div>
+      <% end %>
+
+      <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+        <div class="col l12 btn waves-effect waves-light  blue darken-4 sign-in__button">
+          <i class="fab fa-google"></i>
+          <span class="sign-up__button__capitalize">googleアカウントでログイン</span>
+        </div>
+      <% end %>
+
+
+
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
-
+  </div>
 </div>
+
