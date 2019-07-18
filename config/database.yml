@@ -25,3 +25,6 @@ production:
   adapter: postgresql
   encoding: unicode
   pool: 5
+
+production:
+  url: postgres://pfmcbmusjojoqf:809dad447bf3a3efe006876f58c6854e4f5c39491fbfb88fbbf9e0dcf9535bd5@ec2-54-83-1-101.compute-1.amazonaws.com:5432/da1isl75g99vlt
