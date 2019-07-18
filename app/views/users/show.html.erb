@@ -50,11 +50,17 @@
   <div class="side-grid">
 
     <div class="side__body uk-card-small uk-card-default">
-      <div class="uk-card-body">
-        <p class="side__body__comment__next">NEXT MATCH</p>
-        <p class="side__body__comment__team">vs ヴィッセル神戸</p>
-        <p class="side__body__comment__date">7月14日（日） 19:00〜</p>
-        <p class="side__body__comment__place">@ BMWスタジアム</p>
+      <div class="uk-card-body side__body__box">
+        <p class="side__body__comment__next">
+          ユーザー名: <%= @user.name %>
+        </p>
+
+        <%= link_to edit_user_path(current_user) do %>
+        <div class="btn waves-effect waves-light grey darken-1 side__body__box__btn">
+          <i class="fas fa-user-edit side__body__box__btn__edit"></i><span>プロフィールを編集</span>
+        </div>
+        <% end %>
+
       </div>
     </div>
 

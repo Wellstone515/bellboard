@@ -31,6 +31,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
+  def facebook
+    callback_for :facebook
+  end
+
   private
 
   def callback_from(provider)
