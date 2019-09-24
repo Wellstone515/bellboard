@@ -10,8 +10,8 @@
       </div>
       <% post.images.each do |image| %>
       <span uk-lightbox>
-        <%= link_to("#{image.image_id.url}") do %>
-          <%= image_tag "#{image.image_id.url}", width: "150" %>
+        <%= link_to("#{image.image_id}") do %>
+          <%= image_tag "#{image.image_id}", width: "150" %>
         <% end %>
       </span>
       <% end %>
@@ -43,9 +43,9 @@
     <div class="side__body uk-card-small uk-card-default">
       <div class="uk-card-body">
         <p class="side__body__comment__next">NEXT MATCH</p>
-        <p class="side__body__comment__team">vs コンサドーレ札幌</p>
-        <p class="side__body__comment__date">7月20日（土） 13:00〜</p>
-        <p class="side__body__comment__place">@ 札幌厚別</p>
+        <p class="side__body__comment__team">vs 清水エスパルス</p>
+        <p class="side__body__comment__date">9月29日（日） 19:00〜</p>
+        <p class="side__body__comment__place">@ BMWスタジアム</p>
       </div>
     </div>
 
