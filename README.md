@@ -1,11 +1,12 @@
  # BELLBOARD
 
 
- ## users table
+ ## 概要
 
- | Column |  Type  |   Options
- |--------|--------|---------------------------------------
- | name   | string | index: true, null: false, unique: true
- | mail   | string | null: false, unique: true
-
- ### Association
+ ## 制作背景
+ 
+ ## 機能
+  
+ ## 今後実装したい機能
+ 
+ ## 使用技術
