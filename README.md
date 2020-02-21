@@ -24,4 +24,4 @@
  - Materialize
  - Heroku
  
- file:///Users/ishiihidenori/Desktop/bellboard_screen.png
+<img width="1440" alt="bellboard_screen" src="https://user-images.githubusercontent.com/43293926/75014214-21c5eb00-54c9-11ea-8968-3f062b972df8.png">
