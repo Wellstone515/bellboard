@@ -23,3 +23,5 @@
  - jQuery
  - Materialize
  - Heroku
+ 
+ file:///Users/ishiihidenori/Desktop/bellboard_screen.png
