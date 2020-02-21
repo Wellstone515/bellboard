@@ -1,5 +1,5 @@
  # BELLBOARD
-<img width="1440" alt="bellboard_screen" src="https://user-images.githubusercontent.com/43293926/75014214-21c5eb00-54c9-11ea-8968-3f062b972df8.png">
+<img width="1440" alt="スクリーンショット 2020-02-21 16 50 44" src="https://user-images.githubusercontent.com/43293926/75014755-61410700-54ca-11ea-83fb-d172a7d12baf.png">
 
  ## 概要
  - 湘南ベルマーレ（プロサッカーチーム）のサポーター向けの掲示板サイト
